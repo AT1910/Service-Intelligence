@@ -501,4 +501,4 @@ function ServiceSchedules() {
   );
 }
 
-export default Schedules;
+export default ServiceSchedules;
