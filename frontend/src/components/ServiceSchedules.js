@@ -199,8 +199,15 @@ function ServiceSchedules() {
 
   return (
     <div className="space-y-6 fade-in" data-testid="schedules-page">
+      <div className="page-header">
+        <h1 className="page-title">Floor Schedules</h1>
+        <p className="page-subtitle">Planning our team for exceptional service delivery</p>
+      </div>
+
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold text-slate-900">🕐 Staff Schedules</h1>
+        <div>
+          <p className="text-lg font-semibold" style={{color: 'var(--color-text)'}}>Service Planning</p>
+        </div>
         <div className="flex items-center space-x-4">
           <input
             type="date"
