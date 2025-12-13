@@ -256,10 +256,10 @@ function ServiceSchedules() {
 
       <div className="card">
         {schedules.length === 0 ? (
-          <div className="text-center py-12" data-testid="no-schedules-message">
-            <span className="text-6xl mb-4 block">🕐</span>
-            <h3 className="text-xl font-semibold text-slate-700 mb-2">No Schedules Found</h3>
-            <p className="text-slate-500">Add your first schedule to get started.</p>
+          <div className="empty-state" data-testid="no-schedules-message">
+            <span className="empty-icon">⏰</span>
+            <h3 className="empty-title">Build Your Floor Schedule</h3>
+            <p className="empty-description">Start scheduling team members for upcoming service</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
