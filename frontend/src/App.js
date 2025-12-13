@@ -1,51 +1,68 @@
-import { useEffect } from "react";
-import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import '@/App.css';
+import Dashboard from '@/components/Dashboard';
+import Reservations from '@/components/Reservations';
+import Guests from '@/components/Guests';
+import Staff from '@/components/Staff';
+import Schedules from '@/components/Schedules';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-const API = `${BACKEND_URL}/api`;
-
-const Home = () => {
-  const helloWorldApi = async () => {
-    try {
-      const response = await axios.get(`${API}/`);
-      console.log(response.data.message);
-    } catch (e) {
-      console.error(e, `errored out requesting / api`);
-    }
-  };
-
-  useEffect(() => {
-    helloWorldApi();
-  }, []);
-
+function Navigation() {
+  const location = useLocation();
+  
+  const navItems = [
+    { path: '/', label: 'Dashboard', icon: '📊' },
+    { path: '/reservations', label: 'Reservations', icon: '📅' },
+    { path: '/guests', label: 'Guests', icon: '👥' },
+    { path: '/staff', label: 'Staff', icon: '👨‍🍳' },
+    { path: '/schedules', label: 'Schedules', icon: '🕐' },
+  ];
+  
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
-    </div>
+    <nav className="bg-slate-900 text-white border-b border-slate-700">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex items-center space-x-2">
+            <span className="text-2xl">🍽️</span>
+            <h1 className="text-xl font-bold">Restaurant Operations</h1>
+          </div>
+          <div className="flex space-x-1">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`px-4 py-2 rounded-lg transition-colors ${
+                  location.pathname === item.path
+                    ? 'bg-blue-600 text-white'
+                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                }`}
+                data-testid={`nav-${item.label.toLowerCase()}`}
+              >
+                <span className="mr-2">{item.icon}</span>
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+    </nav>
   );
-};
+}
 
 function App() {
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-slate-50">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
-        </Routes>
+        <Navigation />
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/reservations" element={<Reservations />} />
+            <Route path="/guests" element={<Guests />} />
+            <Route path="/staff" element={<Staff />} />
+            <Route path="/schedules" element={<Schedules />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </div>
   );
