@@ -4,45 +4,42 @@ import '@/App.css';
 import Dashboard from '@/components/Dashboard';
 import Reservations from '@/components/Reservations';
 import Guests from '@/components/Guests';
-import Staff from '@/components/Staff';
-import Schedules from '@/components/Schedules';
+import TeamMembers from '@/components/TeamMembers';
+import ServiceSchedules from '@/components/ServiceSchedules';
 
 function Navigation() {
   const location = useLocation();
   
   const navItems = [
-    { path: '/', label: 'Dashboard', icon: '📊' },
-    { path: '/reservations', label: 'Reservations', icon: '📅' },
-    { path: '/guests', label: 'Guests', icon: '👥' },
-    { path: '/staff', label: 'Staff', icon: '👨‍🍳' },
-    { path: '/schedules', label: 'Schedules', icon: '🕐' },
+    { path: '/', label: 'Service Intelligence', icon: '✨' },
+    { path: '/reservations', label: 'Reservations & Covers', icon: '📖' },
+    { path: '/guests', label: 'Guest Relations', icon: '🤝' },
+    { path: '/team', label: 'Team & Hospitality', icon: '👥' },
+    { path: '/schedules', label: 'Floor Schedules', icon: '⏰' },
   ];
   
   return (
-    <nav className="bg-slate-900 text-white border-b border-slate-700">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl">🍽️</span>
-            <h1 className="text-xl font-bold">Restaurant Operations</h1>
+    <nav className="nav-header">
+      <div className="nav-container">
+        <div className="nav-brand">
+          <span className="brand-icon">🍽</span>
+          <div className="brand-text">
+            <h1 className="brand-title">Enlightened Hospitality</h1>
+            <p className="brand-subtitle">Operations Intelligence</p>
           </div>
-          <div className="flex space-x-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  location.pathname === item.path
-                    ? 'bg-blue-600 text-white'
-                    : 'text-slate-300 hover:bg-slate-800 hover:text-white'
-                }`}
-                data-testid={`nav-${item.label.toLowerCase()}`}
-              >
-                <span className="mr-2">{item.icon}</span>
-                {item.label}
-              </Link>
-            ))}
-          </div>
+        </div>
+        <div className="nav-links">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`nav-link ${location.pathname === item.path ? 'nav-link-active' : ''}`}
+              data-testid={`nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{item.label}</span>
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
@@ -51,16 +48,16 @@ function Navigation() {
 
 function App() {
   return (
-    <div className="App min-h-screen bg-slate-50">
+    <div className="App">
       <BrowserRouter>
         <Navigation />
-        <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="main-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/reservations" element={<Reservations />} />
             <Route path="/guests" element={<Guests />} />
-            <Route path="/staff" element={<Staff />} />
-            <Route path="/schedules" element={<Schedules />} />
+            <Route path="/team" element={<TeamMembers />} />
+            <Route path="/schedules" element={<ServiceSchedules />} />
           </Routes>
         </div>
       </BrowserRouter>
