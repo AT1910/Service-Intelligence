@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSchedules, createSchedule, updateSchedule, deleteSchedule, getStaff, getServiceConfig, createServiceConfig, updateServiceConfig } from '@/services/api';
 
-function Schedules() {
+function ServiceSchedules() {
   const [schedules, setSchedules] = useState([]);
   const [staff, setStaff] = useState([]);
   const [filterDate, setFilterDate] = useState('');
