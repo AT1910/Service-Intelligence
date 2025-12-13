@@ -262,7 +262,7 @@ function ServiceSchedules() {
             <p className="empty-description">Start scheduling team members for upcoming service</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
+          <div className="table-container">
             <table className="table" data-testid="schedules-table">
               <thead>
                 <tr>
