@@ -228,10 +228,10 @@ function ServiceSchedules() {
           )}
           <button 
             onClick={() => openModal()} 
-            className="btn btn-primary"
+            className="btn btn-accent"
             data-testid="add-schedule-btn"
           >
-            + Add Schedule
+            ➕ Add to Schedule
           </button>
         </div>
       </div>
